@@ -27,3 +27,16 @@ def index(request):
 
 
     return render(request, 'index.html', context)
+
+
+def certificates_view(request):
+
+    portfolios = Portfolio.objects.get(name='Certificates')
+    p = Portfolio.objects.all()
+    context = {
+        "portfolio": portfolios,
+        'portfolios': p,
+    }
+    return render(request, "certificates.html", context)
+
+
