@@ -62,9 +62,15 @@ class Skills(models.Model):
 class Portfolio(models.Model):
     name = models.CharField(max_length=30, default=None)
     image = models.ImageField(upload_to='portfolio/')
-    link = models.URLField(max_length=200)
 
     def __str__(self):
         return f'Portfolio {self.id}'
 
 
+class Certificates(models.Model):
+    name = models.CharField(max_length=30)
+    image = models.ImageField(upload_to='pictures/', default='picture/certificate_cover.JPEG')
+    pdf = models.FileField(upload_to='certificates/', default='certificates/Rajath_Build_15_AR.pdf')
+
+    def __str__(self):
+        return self.name

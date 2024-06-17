@@ -53,18 +53,20 @@
             </section>
             
             <section class="portfolio section" id="portfolio">
-                <h2 class="section-title">Portfolio</h2>
-
+                <h2 class="section-title">{{ portfolio.name }}</h2>
+                <h4 style="text-align: center;">Hi Guys, below shown are the certificates that I have acheived.</h4>
                 
                 <div class="portfolio__container bd-grid">
 
-                    {% for portfolio in portfolios %}
+                    {% for certificate in certificates %}
                     
                     <div class="portfolio__img">
-                        <img src="{{ portfolio.image.url }}" alt="">
-
-                        <div class="portfolio__link">
-                            <a href="{%  url 'certificates' %}" class="portfolio__link-name">View details</a>
+                        <img src="{{ certificate.image.url }}" alt="">
+                        <div class="certificate">
+                            <h2 style="text-align: center;">{{ certificate.name }}</h2>
+                            <div class="portfolio__link">
+                                <a href="{{ certificate.pdf.url }}" target="_blank" class="portfolio__link-name">View {{ certificate.name }}</a>
+                            </div>
                         </div>
                     </div>
 

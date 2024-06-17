@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Home, About, Profile, Category, Skills, Portfolio
+from .models import Home, About, Profile, Category, Skills, Portfolio, Certificates
 
 
 def index(request):
@@ -32,11 +32,14 @@ def index(request):
 def certificates_view(request):
 
     portfolios = Portfolio.objects.get(name='Certificates')
-    p = Portfolio.objects.all()
+    certificates = Certificates.objects.all()
     context = {
         "portfolio": portfolios,
-        'portfolios': p,
+        'certificates': certificates,
     }
+    print("Context")
+    print(context)
+
     return render(request, "certificates.html", context)
 
 
