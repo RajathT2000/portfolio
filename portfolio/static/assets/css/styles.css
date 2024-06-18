@@ -111,14 +111,16 @@ img{
     margin-left: var(--mb-2);
     margin-right: var(--mb-2);
 }
-.l-header{
+
+.l-header {
     width: 100%;
     position: fixed;
     top: 0;
     left: 0;
     z-index: var(--z-fixed);
-    background-color: var(--first-color);
+    background-color: rgba(0, 0, 0, 1); /* Adjust the transparency as needed */
 }
+
 
 /*===== NAV =====*/
 .nav{
@@ -145,7 +147,7 @@ img{
 }
 .nav__link{
     position: relative;
-    color: var(--dark-color);
+    color: white;
 }
 .nav__link:hover{
     color: var(--first-color);
@@ -176,7 +178,7 @@ img{
 }
 
 /*===== HOME =====*/
-.home{
+/* .home{
     position: relative;
     background-color: var(--first-color);
     overflow: hidden;
@@ -184,20 +186,20 @@ img{
 .home__container{
     height: calc(100vh - var(--header-height));
     row-gap: 5rem;
-}
-.home__title{
+} */
+/* .home__title{
     align-self: flex-end;
     font-size: var(--big-font-size);
     color: var(--white-color);
     line-height: .8;
-}
+} */
 .home__title span{
     text-shadow: 0 20px 25px rgba(0,0,0,.5);
 }
-.home__scroll{
+/* .home__scroll{
     align-self: flex-end;
     padding-bottom: var(--mb-4);
-}
+} */
 .home__scroll-link{
     writing-mode: vertical-lr;
     transform: rotate(-180deg);
@@ -412,7 +414,7 @@ img{
         display: none;
     }
     .nav__link{
-        color: var(--white-color);
+        color: white;
     }
     .nav__link:hover{
         color: var(--white-color);
@@ -486,4 +488,82 @@ img{
         width: 500px;
         right: 24%;
     }
+}
+/* .home {
+    background: url('work1.jpg') no-repeat center center/cover;
+    height: 100vh;
+    color: #fff;
+    position: relative;
+}
+
+.home__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.home__title {
+    text-align: center;
+}
+
+.home__scroll {
+    position: absolute;
+    bottom: 20px;
+} */
+
+#homeVideo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1; /* Ensure the video is behind the content */
+}
+
+.home {
+    height: 100vh;
+    color: #fff; /* Adjust text color if necessary */
+    position: relative;
+}
+
+.home__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    position: relative; /* Ensure the content is above the video */
+    z-index: 1;
+}
+
+.home__title {
+    text-align: center;
+}
+
+.home__scroll {
+    position: absolute;
+    bottom: 20px;
+}
+
+.mute-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 2;
+    padding: 0;
+}
+
+.mute-button img {
+    width: 40px; /* Adjust the size as needed */
+    height: 40px;
+}
+
+.mute-button:hover img {
+    opacity: 0.8;
 }

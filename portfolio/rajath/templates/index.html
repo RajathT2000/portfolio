@@ -17,14 +17,13 @@
         <!--===== HEADER =====-->
         <header class="l-header">
             <nav class="nav bd-grid">
-                
                 <div>
                     <a href="#" class="nav__logo">{{ home.name }}</a>
                 </div>
 
                 <div class="nav__menu" id="nav-menu">
                     <ul class="nav__list">
-                        <li class="nav__item"><a href="#home" class="nav__link active">Home</a></li>
+                        <li class="nav__item"><a href="#home" class="nav__link">Home</a></li>
                         <li class="nav__item"><a href="#about" class="nav__link">About</a></li>
                         <li class="nav__item"><a href="#skills" class="nav__link">Skills</a></li>
                         <li class="nav__item"><a href="#portfolio" class="nav__link">Portfolio</a></li>
@@ -39,18 +38,23 @@
         </header>
 
         <main class="l-main">
-            <!--===== HOME =====-->
             <section class="home" id="home">
+                <video autoplay muted loop id="homeVideo">
+                    <source src="{% static 'assets/img/one.mp4' %}" type="video/mp4">
+                    Your browser does not support HTML5 video.
+                </video>
                 <div class="home__container bd-grid">
                     <h1 class="home__title"><span>{{ home.greetings_1 }}</span><br>{{ home.greetings_2 }}.</h1>
-
+        
                     <div class="home__scroll">
-                        <a href="#about" class="home__scroll-link"><i class='bx bx-up-arrow-alt' ></i>Scroll down</a>
+                        <a href="#about" class="home__scroll-link"><i class='bx bx-up-arrow-alt'></i>Scroll down</a>
                     </div>
-
-                    <img src="{{ home.picture.url }}" alt="" class="home__img">
                 </div>
             </section>
+        </main>
+        
+        
+            
             
             <!--===== ABOUT =====-->
             <section class="about section" id="about">
@@ -202,5 +206,6 @@
 
         <!--===== MAIN JS =====-->
         <script src="{% static 'assets/js/main.js' %}"></script>
+        
     </body>
 </html>
