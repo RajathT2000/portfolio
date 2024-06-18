@@ -59,6 +59,7 @@
                 <div class="portfolio__container bd-grid">
 
                     {% for certificate in certificates %}
+                    {{ about.social.social_name }}
                     
                     <div class="portfolio__img">
                         <img src="{{ certificate.image.url }}" alt="">

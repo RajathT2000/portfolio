@@ -8,8 +8,8 @@ def index(request):
     home = Home.objects.latest('updated')
 
     # About
-    about = About.objects.latest('updated')
-    profiles = Profile.objects.filter(about=about)
+    abouts = About.objects.latest('updated')
+    profiles = Profile.objects.filter(about=abouts)
 
     # Skills
     categories = Category.objects.all()
@@ -19,12 +19,12 @@ def index(request):
 
     context = {
         'home': home,
-        'about': about,
+        'about': abouts,
         'profiles': profiles,
         'categories': categories,
         'portfolios': portfolios,
     }
-
+    print(context)
 
     return render(request, 'index.html', context)
 
