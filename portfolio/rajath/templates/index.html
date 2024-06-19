@@ -62,8 +62,8 @@
 
                 <div class="about__container bd-grid">
                     <div class="about__img">
-                        <!-- <img src="{% static 'assets/img/perfil.png' %}" alt=""> -->
-                        <img src="{{ about.profile_img.url }}" alt="">
+                        <img src="{% static 'assets/img/one.png' %}" alt="">
+                        <!-- <img src="{{ about.profile_img.url }}" alt=""> -->
                     </div>
 
                     <div>
@@ -114,9 +114,8 @@
                 <div class="portfolio__container bd-grid">
 
                     {% for portfolio in portfolios %}
-                    
                     <div class="portfolio__img">
-                        <img src="{{ portfolio.image.url }}" alt="">
+                        <img src="{% static 'assets/img/work5.jpg' %}" alt="">
 
                         <div class="portfolio__link">
                             <a href="{%  url 'certificates' %}" class="portfolio__link-name">View {{ portfolio.name }}</a>
