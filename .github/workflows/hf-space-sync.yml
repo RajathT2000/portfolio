@@ -1,0 +1,47 @@
+name: Sync to Hugging Face Space
+
+on:
+  push:
+    branches:
+      - main  # or whatever your default branch is
+
+jobs:
+  sync-space:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install git-lfs
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y git-lfs
+          git lfs install
+
+      - name: Clone Hugging Face Space
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: |
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+
+          # Clone the Space repo
+          git clone https://huggingface.co/spaces/rajatht/portfolio hf-space
+
+          # Sync current repo contents into the Space folder
+          rsync -av --delete ./ hf-space/ --exclude ".git" --exclude ".github"
+
+          cd hf-space
+          git add .
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Sync from GitHub repo"
+            git push https://user:$HF_TOKEN@huggingface.co/spaces/rajatht/portfolio HEAD:main
+          fi
