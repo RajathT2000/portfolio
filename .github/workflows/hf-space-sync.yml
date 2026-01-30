@@ -32,16 +32,29 @@ jobs:
           git config --global user.name "github-actions[bot]"
 
           # Clone the Space repo
-          git clone https://huggingface.co/spaces/rajatht/portfolio hf-space
+          echo "Cloning Hugging Face Space..."
+          git clone https://huggingface.co/spaces/rajatht/portfolio hf-space || {
+            echo "Error: Could not clone Space. Make sure:"
+            echo "1. The Space exists at https://huggingface.co/spaces/rajatht/portfolio"
+            echo "2. Your HF_TOKEN has write access"
+            echo "3. The Space name matches 'rajatht/portfolio'"
+            exit 1
+          }
 
           # Sync current repo contents into the Space folder
-          rsync -av --delete ./ hf-space/ --exclude ".git" --exclude ".github"
+          echo "Syncing files to Hugging Face Space..."
+          rsync -av --delete ./ hf-space/ --exclude ".git" --exclude ".github" --exclude "node_modules" --exclude ".gitignore"
 
           cd hf-space
           git add .
           if git diff --cached --quiet; then
-            echo "No changes to commit."
+            echo "No changes to commit. Space is up to date."
           else
-            git commit -m "Sync from GitHub repo"
-            git push https://user:$HF_TOKEN@huggingface.co/spaces/rajatht/portfolio HEAD:main
+            echo "Committing and pushing changes..."
+            git commit -m "Sync from GitHub repo - $(date +'%Y-%m-%d %H:%M:%S')"
+            git push https://user:$HF_TOKEN@huggingface.co/spaces/rajatht/portfolio HEAD:main || {
+              echo "Error: Could not push to Space. Check HF_TOKEN permissions."
+              exit 1
+            }
+            echo "Successfully synced to Hugging Face Space!"
           fi
